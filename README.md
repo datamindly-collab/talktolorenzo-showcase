@@ -6,7 +6,7 @@
 
 > This is a public product and architecture showcase. Production source code, proprietary prompts, credentials, and user data remain private.
 
-![How TalkToLorenzo works and the product timeline](assets/how-it-works-and-timeline.png)
+![How TalkToLorenzo works and the product timeline]/how-it-works-and-timeline.png)
 
 *A product-level view of the connected AI team, shared continuity layer, and the journey from early experiments to the current platform.*
 
@@ -28,7 +28,7 @@ TalkToLorenzo was built around a different idea: **AI should remember where the 
 
 ## Product experience
 
-![TalkToLorenzo dashboard](assets/dashboard.png)
+![TalkToLorenzo dashboard](/dashboard.png)
 
 The dashboard brings conversations, specialist modes, tasks, journeys, saved resources, and suggested next actions into one workspace.
 
@@ -56,7 +56,7 @@ flowchart TD
     W --> H["Attribution and human handoff"]
 ```
 
-For a deeper product-level view, see [Architecture](docs/ARCHITECTURE.md).
+For a deeper product-level view, see [Architecture](ARCHITECTURE.md).
 
 ## My role
 
