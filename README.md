@@ -6,7 +6,7 @@
 
 > This is a public product and architecture showcase. Production source code, proprietary prompts, credentials, and user data remain private.
 
-![How TalkToLorenzo works and the product timeline]/how-it-works-and-timeline.png)
+![How TalkToLorenzo works and the product timeline](how-it-works-and-timeline.png)
 
 *A product-level view of the connected AI team, shared continuity layer, and the journey from early experiments to the current platform.*
 
@@ -28,7 +28,7 @@ TalkToLorenzo was built around a different idea: **AI should remember where the 
 
 ## Product experience
 
-![TalkToLorenzo dashboard](/dashboard.png)
+![TalkToLorenzo dashboard](dashboard.png)
 
 The dashboard brings conversations, specialist modes, tasks, journeys, saved resources, and suggested next actions into one workspace.
 
@@ -57,6 +57,14 @@ flowchart TD
 ```
 
 For a deeper product-level view, see [Architecture](ARCHITECTURE.md).
+
+### Detailed technical map
+
+The public-safe [technical architecture map](technical-architecture-map.html) shows the scale of the founder-built implementation: its integration layer, specialist modes, continuity and workflow system, backend modules, CMS data domains, multilingual delivery, and build profile. Production credentials, proprietary prompts, and internal schema names are intentionally omitted.
+
+When GitHub Pages is enabled for this repository, the rendered map is available at:
+
+**[Open the visual technical architecture map](https://datamindly-collab.github.io/talktolorenzo-showcase/technical-architecture-map.html)**
 
 ## My role
 
