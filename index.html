@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Public technical architecture map for TalkToLorenzo, a continuity-first multilingual AI workspace.">
+<title>TalkToLorenzo — Technical Architecture Map</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0f; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #e8e8f0; }
+  .page { width: 1400px; margin: 0 auto; padding: 20px 28px 18px; }
+  .header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid #2a2a40; margin-bottom: 14px; gap: 20px; }
+  .title { font-size: 24px; font-weight: 700; color: #fff; line-height: 1.1; }
+  .title span { color: #7c6af7; }
+  .slogan { font-size: 11px; color: #9999bb; font-style: italic; margin-top: 3px; }
+  .meta-row { display: flex; gap: 22px; }
+  .meta-item { text-align: center; }
+  .meta-num { font-size: 18px; font-weight: 700; color: #7c6af7; display: block; }
+  .meta-label { font-size: 9px; color: #666688; text-transform: uppercase; letter-spacing: 1px; }
+  .main-grid { display: grid; grid-template-columns: 365px 1fr 310px; gap: 12px; margin-bottom: 12px; align-items: start; }
+  .panel { background: #111120; border: 1px solid #2a2a40; border-radius: 8px; padding: 11px; }
+  .panel.accent-purple { border-color: #4a3a9a; }
+  .panel.accent-teal   { border-color: #1a5a5a; }
+  .panel.accent-gold   { border-color: #5a4a1a; }
+  .panel.accent-green  { border-color: #1a4a2a; }
+  .panel-title { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: #7c6af7; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+  .panel-title::before { content: ''; display: inline-block; width: 3px; height: 10px; background: currentColor; border-radius: 2px; }
+  .panel-title.teal   { color: #3ababa; }
+  .panel-title.gold   { color: #c8a84a; }
+  .panel-title.green  { color: #4aba7a; }
+  .panel-title.blue   { color: #4a8aba; }
+  .connectors-box { background: linear-gradient(135deg, #0d1520 0%, #0d2010 100%); border: 1px solid #2a6a4a; border-radius: 8px; padding: 11px; position: relative; margin-bottom: 10px; }
+  .connectors-box::before { content: '⭐ KEY DIFFERENTIATOR'; position: absolute; top: -9px; left: 12px; background: #1a5a2a; color: #4aba7a; font-size: 8px; letter-spacing: 1.5px; padding: 1px 8px; border-radius: 8px; }
+  .connectors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .connector-card { background: #111820; border: 1px solid #1a3a2a; border-radius: 6px; padding: 7px; }
+  .connector-top { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .connector-icon { font-size: 14px; }
+  .connector-name { font-size: 10px; font-weight: 700; color: #ccddcc; }
+  .connector-desc { font-size: 8px; color: #668866; line-height: 1.3; }
+  .connector-tag { display: inline-block; background: #0d2010; border: 1px solid #2a5a2a; color: #4aba7a; font-size: 7px; padding: 1px 5px; border-radius: 3px; margin-top: 3px; }
+  .specialists-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+  .specialist { background: #1a1a2e; border: 1px solid #3a3a6a; border-radius: 6px; padding: 6px 4px; text-align: center; }
+  .specialist .avatar { font-size: 14px; margin-bottom: 2px; }
+  .specialist .name { font-size: 9px; font-weight: 700; color: #c8c8ff; }
+  .specialist .role { font-size: 7px; color: #666688; text-transform: uppercase; }
+  .specialist .uses { font-size: 7px; color: #4a8aba; margin-top: 2px; }
+  .crm-box { background: linear-gradient(135deg, #12121f 0%, #1a1035 100%); border: 1px solid #4a3a9a; border-radius: 8px; padding: 11px; margin-bottom: 10px; }
+  .crm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 7px; }
+  .crm-stat { text-align: center; background: #1a1a2e; border-radius: 5px; padding: 5px 3px; }
+  .crm-stat .n { font-size: 15px; font-weight: 700; color: #7c6af7; }
+  .crm-stat .l { font-size: 7.5px; color: #666688; margin-top: 1px; }
+  .backend-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 7px; }
+  .backend-file { background: #0f1a20; border: 1px solid #1a3a30; border-radius: 4px; padding: 3px 5px; font-size: 7.5px; color: #4ababa; font-family: 'Courier New', monospace; }
+  .cms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 7px; }
+  .cms-item { background: #141420; border: 1px solid #252535; border-radius: 4px; padding: 3px 5px; font-size: 7.5px; color: #9999bb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .tag { background: #1a1a30; border: 1px solid #333358; color: #aaaacc; font-size: 8.5px; padding: 2px 6px; border-radius: 3px; }
+  .tag.highlight { background: #1e1640; border-color: #5a4aaa; color: #9988ee; }
+  .lang-bar { display: flex; gap: 5px; margin-top: 6px; }
+  .lang { flex: 1; text-align: center; padding: 5px; border-radius: 5px; font-size: 10px; font-weight: 600; }
+  .lang.en { background: #12183a; border: 1px solid #2a3a6a; color: #6688cc; }
+  .lang.es { background: #1a1500; border: 1px solid #3a3000; color: #ccaa22; }
+  .lang.hu { background: #1a0808; border: 1px solid #3a1010; color: #cc4444; }
+  .divider { border: none; border-top: 1px solid #1e1e30; margin: 7px 0; }
+  .flow-row { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 7px; }
+  .flow-box { background: #141420; border: 1px solid #2a2a40; border-radius: 5px; padding: 3px 7px; font-size: 8.5px; color: #aaaacc; }
+  .flow-arrow { color: #444466; font-size: 11px; }
+  .mid-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .invest-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .invest-item { background: #141420; border: 1px solid #2a2a40; border-radius: 6px; padding: 8px 6px; text-align: center; }
+  .invest-num { font-size: 15px; font-weight: 700; color: #c8a84a; }
+  .invest-lbl { font-size: 7.5px; color: #666688; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .human-panel { background: #121a12; border: 1px solid #1a4a2a; border-radius: 8px; padding: 12px 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 24px; }
+  .human-label { flex-shrink: 0; }
+  .quote { font-size: 10.5px; color: #aaccaa; font-style: italic; line-height: 1.55; border-left: 3px solid #4aba7a; padding-left: 14px; }
+  .footer { text-align: center; padding-top: 10px; border-top: 1px solid #2a2a40; }
+  .footer-main { font-size: 11px; color: #7777aa; }
+  .footer-url { font-size: 13px; font-weight: 700; color: #7c6af7; }
+  .footer-sub { font-size: 8.5px; color: #444466; margin-top: 3px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div>
+      <div class="title">Talk<span>To</span>Lorenzo.com</div>
+      <div class="slogan">A connected AI team with continuity, built around the user</div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-num">8,000+</span><span class="meta-label">Lines of Code</span></div>
+      <div class="meta-item"><span class="meta-num">27</span><span class="meta-label">CMS Collections</span></div>
+      <div class="meta-item"><span class="meta-num">18+</span><span class="meta-label">Backend Files</span></div>
+      <div class="meta-item"><span class="meta-num">5</span><span class="meta-label">AI Specialists</span></div>
+      <div class="meta-item"><span class="meta-num">3</span><span class="meta-label">Languages</span></div>
+      <div class="meta-item"><span class="meta-num">12</span><span class="meta-label">HTML Components</span></div>
+      <div class="meta-item"><span class="meta-num">8 wks</span><span class="meta-label">Founder-led Build</span></div>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <div>
+      <div class="connectors-box">
+        <div class="panel-title green" style="margin-bottom:4px;">Personal Data Connectors</div>
+        <div style="font-size:8.5px; color:#88aa88;">Secure, member-authorised connections bring relevant work context into the product.</div>
+        <div class="connectors-grid">
+          <div class="connector-card">
+            <div class="connector-top"><div class="connector-icon">📧</div><div class="connector-name">Gmail</div></div>
+            <div class="connector-desc">Member-authorised inbox assistance for reading context and preparing drafts.</div>
+            <div class="connector-tag">OAuth connector</div>
+          </div>
+          <div class="connector-card">
+            <div class="connector-top"><div class="connector-icon">📅</div><div class="connector-name">Google Calendar</div></div>
+            <div class="connector-desc">Calendar-aware scheduling, reminders, and follow-through workflows.</div>
+            <div class="connector-tag">Calendar connector</div>
+          </div>
+          <div class="connector-card">
+            <div class="connector-top"><div class="connector-icon">🗂️</div><div class="connector-name">Google Drive</div></div>
+            <div class="connector-desc">User-selected documents can provide relevant knowledge and context.</div>
+            <div class="connector-tag">Drive connector</div>
+          </div>
+          <div class="connector-card">
+            <div class="connector-top"><div class="connector-icon">🗃️</div><div class="connector-name">Own Database</div></div>
+            <div class="connector-desc">Contacts and business data can be imported through structured CSV workflows.</div>
+            <div class="connector-tag">Structured data import</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel accent-purple">
+        <div class="panel-title">The AI Team — 5 Specialists</div>
+        <div class="specialists-grid">
+          <div class="specialist"><div class="avatar">🧑‍💼</div><div class="name">LORENZO</div><div class="role">Team Lead</div><div class="uses">Strategy · Routing</div></div>
+          <div class="specialist"><div class="avatar">👩‍💼</div><div class="name">SOFIA</div><div class="role">Social Media</div><div class="uses">Content</div></div>
+          <div class="specialist"><div class="avatar">👨‍💻</div><div class="name">LEO</div><div class="role">Lead Gen</div><div class="uses">Growth</div></div>
+          <div class="specialist"><div class="avatar">👩‍🔬</div><div class="name">AVA</div><div class="role">Communication</div><div class="uses">Follow-up</div></div>
+          <div class="specialist"><div class="avatar">📚</div><div class="name">NORA</div><div class="role">Knowledge</div><div class="uses">Memory</div></div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-box">Message → Lorenzo routes</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">Specialist acts</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">Journey saved</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="crm-box">
+        <div class="panel-title gold">Built-in Continuity and Workflow Layer</div>
+        <div style="font-size:8.5px; color:#aaaacc;">Profiles, tasks, outputs, journeys, and conversation history connect inside one workspace.</div>
+        <div class="crm-stats">
+          <div class="crm-stat"><div class="n">Profiles</div><div class="l">Identity & context</div></div>
+          <div class="crm-stat"><div class="n">Tasks</div><div class="l">Action & follow-up</div></div>
+          <div class="crm-stat"><div class="n">Sessions</div><div class="l">Conversation history</div></div>
+          <div class="crm-stat"><div class="n">Knowledge</div><div class="l">Searchable resources</div></div>
+          <div class="crm-stat"><div class="n">Journeys</div><div class="l">Progress & next steps</div></div>
+          <div class="crm-stat"><div class="n">Handoffs</div><div class="l">Human escalation</div></div>
+        </div>
+        <div class="tags">
+          <span class="tag highlight">Membership tiers</span>
+          <span class="tag highlight">Journey history</span>
+          <span class="tag highlight">Trial gating</span>
+          <span class="tag highlight">Usage controls</span>
+          <span class="tag highlight">Plan upgrades</span>
+          <span class="tag highlight">Admin controls</span>
+        </div>
+      </div>
+      <div class="panel accent-teal">
+        <div class="panel-title teal">Backend Logic — 18+ Files</div>
+        <div class="backend-grid">
+          <div class="backend-file">Orchestration</div>
+          <div class="backend-file">Member profiles</div>
+          <div class="backend-file">Session state</div>
+          <div class="backend-file">Task workflows</div>
+          <div class="backend-file">Journey engine</div>
+          <div class="backend-file">Structured outputs</div>
+          <div class="backend-file">Knowledge layer</div>
+          <div class="backend-file">Contact import</div>
+          <div class="backend-file">Specialist modes</div>
+          <div class="backend-file">Email connector</div>
+          <div class="backend-file">Drive connector</div>
+          <div class="backend-file">Web search</div>
+          <div class="backend-file">Model gateway</div>
+          <div class="backend-file">Reminders</div>
+          <div class="backend-file">Calendar</div>
+          <div class="backend-file">API endpoints</div>
+          <div class="backend-file">Usage controls</div>
+          <div class="backend-file">Localisation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel accent-green" style="height:100%;">
+      <div class="panel-title green">CMS Database — 27 Collections</div>
+      <div class="cms-grid">
+        <div class="cms-item">Member profiles</div>
+        <div class="cms-item">Member outputs</div>
+        <div class="cms-item">Member tasks</div>
+        <div class="cms-item">Chat sessions</div>
+        <div class="cms-item">Conversations</div>
+        <div class="cms-item">FAQs</div>
+        <div class="cms-item">Testimonials</div>
+        <div class="cms-item">Health topics</div>
+        <div class="cms-item">Guidance content</div>
+        <div class="cms-item">Knowledge base</div>
+        <div class="cms-item">Team knowledge</div>
+        <div class="cms-item">Journey templates</div>
+        <div class="cms-item">Active journeys</div>
+        <div class="cms-item">Product mapping</div>
+        <div class="cms-item">Packages</div>
+        <div class="cms-item">Categories</div>
+        <div class="cms-item">Team settings</div>
+        <div class="cms-item">Specialist config</div>
+        <div class="cms-item">Usage tracking</div>
+        <div class="cms-item">Open loops</div>
+        <div class="cms-item">Waitlist</div>
+        <div class="cms-item">Connector credentials</div>
+        <div class="cms-item">Connector state</div>
+        <div class="cms-item">Access control</div>
+        <div class="cms-item">Client sessions</div>
+        <div class="cms-item">Product content</div>
+        <div class="cms-item">White-label sessions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mid-row">
+    <div class="panel">
+      <div class="panel-title blue" style="margin-bottom:5px;">Platform — Wix Velo</div>
+      <div class="tags" style="margin-top:0;">
+        <span class="tag">12 custom HTML components</span>
+        <span class="tag">postMessage bus</span>
+        <span class="tag">Brave Search API</span>
+        <span class="tag">Anthropic Claude API</span>
+        <span class="tag">OAuth · Google</span>
+        <span class="tag">HTTP Functions</span>
+        <span class="tag">Wix Members + CMS</span>
+        <span class="tag">Pricing Plans API</span>
+      </div>
+      <div class="divider"></div>
+      <div class="panel-title" style="margin-bottom:4px; font-size:8.5px;">UI & UX — Product strategy, interaction design, integration, testing, and delivery led by the founder.</div>
+    </div>
+    <div class="panel">
+      <div class="panel-title gold" style="margin-bottom:5px;">3 Languages — All Prompts, UI & CTAs</div>
+      <div class="lang-bar">
+        <div class="lang en">🇬🇧 English</div>
+        <div class="lang es">🇪🇸 Español</div>
+        <div class="lang hu">🇭🇺 Magyar</div>
+      </div>
+      <div style="font-size:8.5px; color:#666688; margin-top:7px; line-height:1.5;">Language-aware request handling across specialist instructions, templates, choice buttons, error messages, and interface strings.</div>
+    </div>
+    <div class="panel accent-gold">
+      <div class="panel-title gold">Build Stats</div>
+      <div class="invest-row">
+        <div class="invest-item"><div class="invest-num">8 wks</div><div class="invest-lbl">May 10 → Jul 4</div></div>
+        <div class="invest-item"><div class="invest-num">~€142</div><div class="invest-lbl">Claude API cost</div></div>
+        <div class="invest-item"><div class="invest-num">Founder-led</div><div class="invest-lbl">AI-assisted delivery</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="human-panel">
+    <div class="human-label">
+      <div class="panel-title green" style="margin-bottom:0; white-space:nowrap;">The Human Behind It</div>
+      <div style="font-size:10px; color:#4aba7a; font-weight:700; margin-top:3px;">Bálint Vojnits</div>
+    </div>
+    <div class="quote">
+      "AI dramatically accelerated implementation, but product judgment remained human. I defined the user problem, designed the workflows, made the strategic trade-offs, integrated the system, tested it with real users, and decided what to build, change, or leave out."
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-main">Founder-built by Bálint Vojnits with AI-assisted development · 2026</div>
+    <div class="footer-url"><a href="https://www.talktolorenzo.com" style="color:inherit; text-decoration:none;">talktolorenzo.com</a></div>
+    <div class="footer-sub">Public product architecture overview · Production credentials, proprietary prompts, and internal schemas omitted</div>
+  </div>
+</div>
+</body>
+</html>
