@@ -73,6 +73,21 @@
   .human-panel { background: #121a12; border: 1px solid #1a4a2a; border-radius: 8px; padding: 12px 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 24px; }
   .human-label { flex-shrink: 0; }
   .quote { font-size: 10.5px; color: #aaccaa; font-style: italic; line-height: 1.55; border-left: 3px solid #4aba7a; padding-left: 14px; }
+  .new-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
+  .new-panel { background: linear-gradient(160deg, #121226 0%, #0f0f1a 100%); border: 1px solid #3a3a6a; border-radius: 8px; padding: 11px; position: relative; }
+  .new-badge { position: absolute; top: -9px; right: 12px; background: #2a1e5a; color: #b8a8ff; font-size: 7.5px; letter-spacing: 1.5px; padding: 1px 8px; border-radius: 8px; text-transform: uppercase; }
+  .new-panel p { font-size: 8.5px; color: #9999bb; line-height: 1.45; margin-bottom: 6px; }
+  .bul { list-style: none; }
+  .bul li { font-size: 8.5px; color: #c0c0dd; line-height: 1.45; padding-left: 10px; position: relative; margin-bottom: 2px; }
+  .bul li::before { content: '›'; position: absolute; left: 0; color: #7c6af7; }
+  .stage-row { display: flex; gap: 3px; margin-top: 6px; flex-wrap: wrap; }
+  .stage { background: #1a1a30; border: 1px solid #333358; border-radius: 4px; font-size: 7.5px; color: #aaaacc; padding: 2px 5px; }
+  .stage.on { background: #1e1640; border-color: #5a4aaa; color: #b8a8ff; }
+  .timeline { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .tl-item { background: #141420; border: 1px solid #2a2a40; border-radius: 6px; padding: 7px 8px; }
+  .tl-when { font-size: 8px; color: #c8a84a; text-transform: uppercase; letter-spacing: 1px; }
+  .tl-what { font-size: 8.5px; color: #aaaacc; margin-top: 3px; line-height: 1.4; }
+  body { overflow-x: auto; }
   .footer { text-align: center; padding-top: 10px; border-top: 1px solid #2a2a40; }
   .footer-main { font-size: 11px; color: #7777aa; }
   .footer-url { font-size: 13px; font-weight: 700; color: #7c6af7; }
@@ -84,16 +99,16 @@
   <div class="header">
     <div>
       <div class="title">Talk<span>To</span>Lorenzo.com</div>
-      <div class="slogan">A connected AI team with continuity, built around the user</div>
+      <div class="slogan">A connected AI team with continuity, built around the user · now with personal AI sales links</div>
     </div>
     <div class="meta-row">
       <div class="meta-item"><span class="meta-num">8,000+</span><span class="meta-label">Lines of Code</span></div>
-      <div class="meta-item"><span class="meta-num">27</span><span class="meta-label">CMS Collections</span></div>
-      <div class="meta-item"><span class="meta-num">18+</span><span class="meta-label">Backend Files</span></div>
+      <div class="meta-item"><span class="meta-num">25+</span><span class="meta-label">Backend Modules</span></div>
+      <div class="meta-item"><span class="meta-num">60+</span><span class="meta-label">Sales-link Releases</span></div>
+      <div class="meta-item"><span class="meta-num">100+</span><span class="meta-label">Guarded Behaviours</span></div>
       <div class="meta-item"><span class="meta-num">5</span><span class="meta-label">AI Specialists</span></div>
       <div class="meta-item"><span class="meta-num">3</span><span class="meta-label">Languages</span></div>
-      <div class="meta-item"><span class="meta-num">12</span><span class="meta-label">HTML Components</span></div>
-      <div class="meta-item"><span class="meta-num">8 wks</span><span class="meta-label">Founder-led Build</span></div>
+      <div class="meta-item"><span class="meta-num">6 mo</span><span class="meta-label">Founder-led Build</span></div>
     </div>
   </div>
 
@@ -153,7 +168,7 @@
           <div class="crm-stat"><div class="n">Tasks</div><div class="l">Action & follow-up</div></div>
           <div class="crm-stat"><div class="n">Sessions</div><div class="l">Conversation history</div></div>
           <div class="crm-stat"><div class="n">Knowledge</div><div class="l">Searchable resources</div></div>
-          <div class="crm-stat"><div class="n">Journeys</div><div class="l">Progress & next steps</div></div>
+          <div class="crm-stat"><div class="n">Projects</div><div class="l">Goals, phases & next steps</div></div>
           <div class="crm-stat"><div class="n">Handoffs</div><div class="l">Human escalation</div></div>
         </div>
         <div class="tags">
@@ -163,26 +178,37 @@
           <span class="tag highlight">Usage controls</span>
           <span class="tag highlight">Plan upgrades</span>
           <span class="tag highlight">Admin controls</span>
+          <span class="tag highlight">Projects &amp; daily check-ins</span>
+          <span class="tag highlight">Best-practice sharing</span>
         </div>
       </div>
       <div class="panel accent-teal">
-        <div class="panel-title teal">Backend Logic — 18+ Files</div>
+        <div class="panel-title teal">Backend Logic — 25+ Modules</div>
         <div class="backend-grid">
           <div class="backend-file">Orchestration</div>
           <div class="backend-file">Member profiles</div>
           <div class="backend-file">Session state</div>
           <div class="backend-file">Task workflows</div>
-          <div class="backend-file">Journey engine</div>
+          <div class="backend-file">Projects &amp; journeys</div>
           <div class="backend-file">Structured outputs</div>
-          <div class="backend-file">Knowledge layer</div>
-          <div class="backend-file">Contact import</div>
+          <div class="backend-file">Knowledge packs</div>
+          <div class="backend-file">Relevance index</div>
+          <div class="backend-file">Pack sharing</div>
+          <div class="backend-file">Best practices</div>
           <div class="backend-file">Specialist modes</div>
+          <div class="backend-file">Sales-link stages</div>
+          <div class="backend-file">Sales-link settings</div>
+          <div class="backend-file">Lead &amp; handoff</div>
+          <div class="backend-file">Self-test runner</div>
+          <div class="backend-file">Campaign flow</div>
+          <div class="backend-file">Campaign funnel</div>
+          <div class="backend-file">Milestone emails</div>
           <div class="backend-file">Email connector</div>
           <div class="backend-file">Drive connector</div>
+          <div class="backend-file">Calendar</div>
           <div class="backend-file">Web search</div>
           <div class="backend-file">Model gateway</div>
           <div class="backend-file">Reminders</div>
-          <div class="backend-file">Calendar</div>
           <div class="backend-file">API endpoints</div>
           <div class="backend-file">Usage controls</div>
           <div class="backend-file">Localisation</div>
@@ -191,36 +217,90 @@
     </div>
 
     <div class="panel accent-green" style="height:100%;">
-      <div class="panel-title green">CMS Database — 27 Collections</div>
-      <div class="cms-grid">
-        <div class="cms-item">Member profiles</div>
-        <div class="cms-item">Member outputs</div>
-        <div class="cms-item">Member tasks</div>
-        <div class="cms-item">Chat sessions</div>
+      <div class="panel-title green">Data Domains</div>
+      <div style="font-size:8.5px; color:#668866; margin-bottom:4px;">Grouped by purpose. Internal collection names and fields are intentionally omitted.</div>
+      <div class="cms-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="cms-item">Members &amp; access</div>
         <div class="cms-item">Conversations</div>
-        <div class="cms-item">FAQs</div>
-        <div class="cms-item">Testimonials</div>
-        <div class="cms-item">Health topics</div>
-        <div class="cms-item">Guidance content</div>
-        <div class="cms-item">Knowledge base</div>
-        <div class="cms-item">Team knowledge</div>
-        <div class="cms-item">Journey templates</div>
-        <div class="cms-item">Active journeys</div>
-        <div class="cms-item">Product mapping</div>
-        <div class="cms-item">Packages</div>
-        <div class="cms-item">Categories</div>
-        <div class="cms-item">Team settings</div>
-        <div class="cms-item">Specialist config</div>
-        <div class="cms-item">Usage tracking</div>
-        <div class="cms-item">Open loops</div>
-        <div class="cms-item">Waitlist</div>
-        <div class="cms-item">Connector credentials</div>
-        <div class="cms-item">Connector state</div>
-        <div class="cms-item">Access control</div>
-        <div class="cms-item">Client sessions</div>
+        <div class="cms-item">Projects &amp; tasks</div>
+        <div class="cms-item">Outputs &amp; resources</div>
+        <div class="cms-item">Journeys &amp; templates</div>
+        <div class="cms-item">Open loops &amp; reminders</div>
+        <div class="cms-item">Knowledge packs</div>
+        <div class="cms-item">Pack sharing</div>
+        <div class="cms-item">Best practices</div>
+        <div class="cms-item">Sales links &amp; leads</div>
+        <div class="cms-item">Translation cache</div>
+        <div class="cms-item">Self-test runs</div>
+        <div class="cms-item">Campaign funnel</div>
         <div class="cms-item">Product content</div>
+        <div class="cms-item">Usage &amp; plans</div>
+        <div class="cms-item">Connectors</div>
         <div class="cms-item">White-label sessions</div>
+        <div class="cms-item">Knowledge-gap log</div>
       </div>
+    </div>
+  </div>
+
+  <div class="new-row">
+    <div class="new-panel">
+      <span class="new-badge">New · Live</span>
+      <div class="panel-title">Personal AI Sales Links</div>
+      <p>Every paying member gets <b style="color:#c8c8ff;">/u/&lt;name&gt;</b>. The server leads the conversation; the model only writes it.</p>
+      <div class="stage-row">
+        <span class="stage">Greeting</span><span class="stage on">Why · path</span><span class="stage on">Challenge</span><span class="stage on">Mirror · how</span><span class="stage on">What · offer</span><span class="stage">Open advice</span>
+      </div>
+      <ul class="bul" style="margin-top:6px;">
+        <li>Golden Circle stages with server-provided buttons</li>
+        <li>Templates: general, coach, distributor, real estate</li>
+        <li>"Talk to {member}" on every reply · lead keeps path &amp; challenge</li>
+        <li>No health or income claims · numbers only from knowledge</li>
+      </ul>
+    </div>
+    <div class="new-panel">
+      <span class="new-badge">New · Rolling out</span>
+      <div class="panel-title teal">Knowledge Sharing &amp; Duplication</div>
+      <p>Team leaders share one living knowledge pack with their team; updates reach everyone at once.</p>
+      <div class="flow-row" style="margin-top:2px;">
+        <div class="flow-box">Join link</div><div class="flow-arrow">→</div>
+        <div class="flow-box">Team joins</div><div class="flow-arrow">→</div>
+        <div class="flow-box">Dashboard + own sales link</div>
+      </div>
+      <ul class="bul" style="margin-top:6px;">
+        <li>Private by default · owner + joined members only</li>
+        <li>Remove members · regenerate link</li>
+        <li>Strict isolation between competing companies</li>
+        <li>Best practices: adopt a proven campaign in one click</li>
+      </ul>
+    </div>
+    <div class="new-panel">
+      <span class="new-badge">New · Live</span>
+      <div class="panel-title green">Self-test &amp; Regression Guard</div>
+      <p>Working features must never disappear silently. Quality is part of the product.</p>
+      <ul class="bul">
+        <li>Knowledge audit without AI: catalogue, photos, videos, latency</li>
+        <li>Scripted conversations in EN · ES · HU</li>
+        <li>Per-reply diagnostics: which knowledge reached the answer</li>
+        <li>100+ behaviour markers checked before every release</li>
+        <li>Defensive module loading: one stale file cannot stop all links</li>
+      </ul>
+    </div>
+    <div class="new-panel">
+      <span class="new-badge">Starts 9 Nov 2026</span>
+      <div class="panel-title gold">Campaign Layer · 60-Day Accelerator</div>
+      <p>Five AI specialists on one goal for 60 days, built on the same platform.</p>
+      <div class="flow-row" style="margin-top:2px;">
+        <div class="flow-box">Landing</div><div class="flow-arrow">→</div>
+        <div class="flow-box">Plan with assistant</div><div class="flow-arrow">→</div>
+        <div class="flow-box">Human review</div><div class="flow-arrow">→</div>
+        <div class="flow-box">Auto-seeded project</div>
+      </div>
+      <ul class="bul" style="margin-top:6px;">
+        <li>Application in chat with summary card &amp; consent</li>
+        <li>Start date + in-place checkout on the dashboard</li>
+        <li>Daily 2-minute check-ins · milestone emails 30/55/60/+7</li>
+        <li>Funnel timestamp for every stage · reusable for future rounds</li>
+      </ul>
     </div>
   </div>
 
@@ -228,7 +308,7 @@
     <div class="panel">
       <div class="panel-title blue" style="margin-bottom:5px;">Platform — Wix Velo</div>
       <div class="tags" style="margin-top:0;">
-        <span class="tag">12 custom HTML components</span>
+        <span class="tag">12+ custom HTML components</span>
         <span class="tag">postMessage bus</span>
         <span class="tag">Brave Search API</span>
         <span class="tag">Anthropic Claude API</span>
@@ -236,25 +316,29 @@
         <span class="tag">HTTP Functions</span>
         <span class="tag">Wix Members + CMS</span>
         <span class="tag">Pricing Plans API</span>
+        <span class="tag">Scheduled jobs</span>
+        <span class="tag">Transactional email</span>
+        <span class="tag">In-memory indexes</span>
       </div>
       <div class="divider"></div>
       <div class="panel-title" style="margin-bottom:4px; font-size:8.5px;">UI & UX — Product strategy, interaction design, integration, testing, and delivery led by the founder.</div>
     </div>
     <div class="panel">
-      <div class="panel-title gold" style="margin-bottom:5px;">3 Languages — All Prompts, UI & CTAs</div>
+      <div class="panel-title gold" style="margin-bottom:5px;">3 Languages — Dashboard, Sales Links, Campaigns &amp; Email</div>
       <div class="lang-bar">
         <div class="lang en">🇬🇧 English</div>
         <div class="lang es">🇪🇸 Español</div>
         <div class="lang hu">🇭🇺 Magyar</div>
       </div>
-      <div style="font-size:8.5px; color:#666688; margin-top:7px; line-height:1.5;">Language-aware request handling across specialist instructions, templates, choice buttons, error messages, and interface strings.</div>
+      <div style="font-size:8.5px; color:#666688; margin-top:7px; line-height:1.5;">The visitor's language decides; buttons follow each reply's language. Plans, greetings, and best practices are generated once per language and cached. Cross-language retrieval lets a Spanish guide answer an English or Hungarian question. Landing pages open in the browser language.</div>
     </div>
     <div class="panel accent-gold">
-      <div class="panel-title gold">Build Stats</div>
-      <div class="invest-row">
-        <div class="invest-item"><div class="invest-num">8 wks</div><div class="invest-lbl">May 10 → Jul 4</div></div>
-        <div class="invest-item"><div class="invest-num">~€142</div><div class="invest-lbl">Claude API cost</div></div>
-        <div class="invest-item"><div class="invest-num">Founder-led</div><div class="invest-lbl">AI-assisted delivery</div></div>
+      <div class="panel-title gold">Build Timeline</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-when">May → Jul 2026</div><div class="tl-what">Core workspace, AI team, continuity layer · 8 weeks · ~€142 model API cost</div></div>
+        <div class="tl-item"><div class="tl-when">Aug → Oct 2026</div><div class="tl-what">Sales links, knowledge sharing, best practices, self-test &amp; guard, trilingual rollout</div></div>
+        <div class="tl-item"><div class="tl-when">Nov 2026</div><div class="tl-what">60-Day Accelerator: first cohort of 30</div></div>
+        <div class="tl-item"><div class="tl-when">Throughout</div><div class="tl-what">Founder-led, AI-assisted delivery · tested with real users</div></div>
       </div>
     </div>
   </div>
@@ -272,7 +356,7 @@
   <div class="footer">
     <div class="footer-main">Founder-built by Bálint Vojnits with AI-assisted development · 2026</div>
     <div class="footer-url"><a href="https://www.talktolorenzo.com" style="color:inherit; text-decoration:none;">talktolorenzo.com</a></div>
-    <div class="footer-sub">Public product architecture overview · Production credentials, proprietary prompts, and internal schemas omitted</div>
+    <div class="footer-sub">Public product architecture overview · Updated November 2026 · Production credentials, secret names, proprietary prompts, and internal schemas omitted</div>
   </div>
 </div>
 </body>
